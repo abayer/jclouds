@@ -114,6 +114,11 @@ public class CloudStackComputeServiceContextModule extends
       }).to(ZoneIdToZone.class);
       bind(new TypeLiteral<Supplier<LoadingCache<String, Zone>>>() {
       }).to(ZoneIdToZoneSupplier.class);
+      bind(new TypeLiteral<PredicateWithResult<String, Image>>() {
+      }).to(GetImageWhenTemplateIsReadyWithResult.class);
+      bind(new TypeLiteral<ImageExtension>() {
+      }).to(CloudStackImageExtension.class);
+
       // to have the compute service adapter override default locations
       install(new LocationsFromComputeServiceAdapterModule<VirtualMachine, ServiceOffering, Template, Zone>(){});
    }
